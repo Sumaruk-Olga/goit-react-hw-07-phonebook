@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from "react-redux";
-import { getContacts } from "redux/selectors";
+// import { nanoid } from 'nanoid';
+// import { useDispatch, useSelector } from "react-redux";
+// import { getContacts } from "redux/selectors";
 import { Form, Button, Input } from "./ContactForm.styled";
-import { addContact } from 'redux/contactsSlice';
+// import { addContact } from 'redux/contactsSlice';
 
 
 export function ContactForm() {
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts).contacts;
+  // const dispatch = useDispatch();
+  // const contacts = useSelector(getContacts).contacts;
  
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const getId = () => {
-        return nanoid();
-    }
+  // const getId = () => {
+  //       return nanoid();
+  //   }
 
   const handleChange = (e) => {
     e.currentTarget.name === 'name' ?
@@ -29,25 +29,27 @@ export function ContactForm() {
     };
 
 
-    const isNamePresent = (name) => {
-      const normalizedName = name.toLowerCase();
-      return contacts.find(item => item.name.toLowerCase() === normalizedName);
-    }
+    // const isNamePresent = (name) => {
+    //   const normalizedName = name.toLowerCase();
+    //   // return contacts.find(item => item.name.toLowerCase() === normalizedName);
+    // }
     
   const handleSubmit = (e) => {
       e.preventDefault();
-      
-      const isName = isNamePresent(name);
+      console.log('name: ', name, 'number: ', number );
+  //     // const isName = isNamePresent(name);
 
-      if (!isName) {
-        dispatch(addContact({ id: getId(), name, number }));
+  //     if (!isName) {
+  //       dispatch(addContact({ id: getId(), name, number }));
         reset();
-      } else {
-        alert(`${name} is already in contacts`);
-      }    
+  //     } else {
+  //       alert(`${name} is already in contacts`);
+  //     }    
   }
   
-  return <Form autoComplete="off" onSubmit={handleSubmit} >
+  return <Form autoComplete="off"
+   onSubmit={handleSubmit} 
+   >
           <label>Name
             <Input
               type="text"
