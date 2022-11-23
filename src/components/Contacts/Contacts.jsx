@@ -29,9 +29,7 @@ export const Contacts = () => {
             {getVisibleContacts().map((item) => {               
                 return <ContactItem key={item.id}>
                     <p>{item.name}: {item.phone}</p>
-                    <DeleteButton type="button" 
-                    onClick={()=>dispatch(deleteTask(item.id))}
-                    >x</DeleteButton>
+                    <DeleteButton type="button" onClick={()=>dispatch(deleteTask(item.id))} >x</DeleteButton>
                 </ContactItem>
             })}
         </ContactsList>} 
