@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts } from "./operations";
+import { fetchContacts, deleteTask } from "./operations";
 
 const initialState = {
   contacts:[],
@@ -23,11 +23,19 @@ const contactsSlice = createSlice({
       // state.error = action.payload;
     },
 
+    [deleteTask.fulfilled] (state, action) {
+      const index = state.contacts.findIndex(
+        item => item.id === action.payload.id
+      );
+      state.contacts.splice(index, 1);
+  },
+
+
+
   },
   
 });
 
-// export const { getContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
 
 
