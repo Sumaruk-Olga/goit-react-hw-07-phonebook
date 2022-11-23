@@ -30,3 +30,11 @@ cursor: pointer;
     }
 
 `;
+
+export const Error = styled.h1`
+color: ${p => p.theme.text.primary};
+font-size: ${p => p.theme.fontSizes.l};
+font-weight: 900;
+margin-top: ${p => p.theme.space[6]}px;
+margin-bottom: ${p => p.theme.space[6]}px;
+`;

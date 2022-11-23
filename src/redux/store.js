@@ -6,5 +6,17 @@ export const store = configureStore({
   reducer: {
     contacts: contactsReducer,
     filter: filterReducer,
+    isLoading: false,
+    error: null
   },
 });
+
+
+// {
+//   contacts: [
+//     items: [],
+    // isLoading: false,
+    // error: null
+//   ],
+//   filter: ""
+// }
