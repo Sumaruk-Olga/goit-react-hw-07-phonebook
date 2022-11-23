@@ -10,13 +10,3 @@ export const store = configureStore({
     error: null
   },
 });
-
-
-// {
-//   contacts: [
-//     items: [],
-    // isLoading: false,
-    // error: null
-//   ],
-//   filter: ""
-// }

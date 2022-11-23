@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Input } from "./ContactForm.styled";
-
 import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 
 
 export function ContactForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
- 
+  const contacts = useSelector(selectContacts); 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -24,7 +22,6 @@ export function ContactForm() {
     setNumber('');
     };
 
-
     const isNamePresent = (name) => {
       const normalizedName = name.toLowerCase();
       return contacts.find(item => item.name.toLowerCase() === normalizedName);
@@ -33,7 +30,6 @@ export function ContactForm() {
   const handleSubmit = (e) => {
       e.preventDefault();
       const isName = isNamePresent(name);
-
       if (!isName) {
         dispatch(addContact({ name, phone:number }));
         reset();
