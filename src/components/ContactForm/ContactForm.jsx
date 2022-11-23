@@ -1,24 +1,20 @@
 import { useState } from 'react';
-// import { nanoid } from 'nanoid';
-// import { useDispatch, useSelector } from "react-redux";
-// import { getContacts } from "redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Input } from "./ContactForm.styled";
-// import { addContact } from 'redux/contactsSlice';
+
+import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 
 export function ContactForm() {
-  // const dispatch = useDispatch();
-  // const contacts = useSelector(getContacts).contacts;
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
  
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  // const getId = () => {
-  //       return nanoid();
-  //   }
-
   const handleChange = (e) => {
-    e.currentTarget.name === 'name' ?
+    e.target.name === 'name' ?
       setName(e.currentTarget.value) :
       setNumber(e.currentTarget.value);
     }
@@ -29,22 +25,21 @@ export function ContactForm() {
     };
 
 
-    // const isNamePresent = (name) => {
-    //   const normalizedName = name.toLowerCase();
-    //   // return contacts.find(item => item.name.toLowerCase() === normalizedName);
-    // }
+    const isNamePresent = (name) => {
+      const normalizedName = name.toLowerCase();
+      return contacts.find(item => item.name.toLowerCase() === normalizedName);
+    }
     
   const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('name: ', name, 'number: ', number );
-  //     // const isName = isNamePresent(name);
+      const isName = isNamePresent(name);
 
-  //     if (!isName) {
-  //       dispatch(addContact({ id: getId(), name, number }));
+      if (!isName) {
+        dispatch(addContact({ name, phone:number }));
         reset();
-  //     } else {
-  //       alert(`${name} is already in contacts`);
-  //     }    
+      } else {
+        alert(`${name} is already in contacts`);
+      }    
   }
   
   return <Form autoComplete="off"
